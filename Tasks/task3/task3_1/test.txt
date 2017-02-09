@@ -1,0 +1,212 @@
+success
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12122 pts/0    S+     0:00      \_ sh -c ./shell_andor cat success.txt '||' cat success.txt
+12123 pts/0    S+     0:00          \_ ./shell_andor cat success.txt || cat success.txt
+12124 pts/0    Z+     0:00              \_ [cat] <defunct>
+12125 pts/0    S+     0:00              \_ sh -c ps af
+12126 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+TEST
+success
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12127 pts/0    S+     0:00      \_ sh -c ./shell_andor cat success.txt '||' cat error.txt
+12128 pts/0    S+     0:00          \_ ./shell_andor cat success.txt || cat error.txt
+12129 pts/0    Z+     0:00              \_ [cat] <defunct>
+12130 pts/0    S+     0:00              \_ sh -c ps af
+12131 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+TEST
+cat: error.txt: Нет такого файла или каталога
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12132 pts/0    S+     0:00      \_ sh -c ./shell_andor cat error.txt '||' cat success.txt
+12133 pts/0    S+     0:00          \_ ./shell_andor cat error.txt || cat success.txt
+12134 pts/0    Z+     0:00              \_ [cat] <defunct>
+12135 pts/0    S+     0:00              \_ sh -c ps af
+12136 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+success
+TEST
+cat: error.txt: Нет такого файла или каталога
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12138 pts/0    S+     0:00      \_ sh -c ./shell_andor cat error.txt '||' cat error.txt
+12139 pts/0    S+     0:00          \_ ./shell_andor cat error.txt || cat error.txt
+12140 pts/0    Z+     0:00              \_ [cat] <defunct>
+12141 pts/0    S+     0:00              \_ sh -c ps af
+12142 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+cat: error.txt: Нет такого файла или каталога
+TEST
+success
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12144 pts/0    S+     0:00      \_ sh -c ./shell_andor cat success.txt '&&' cat success.txt
+12145 pts/0    S+     0:00          \_ ./shell_andor cat success.txt && cat success.txt
+12146 pts/0    Z+     0:00              \_ [cat] <defunct>
+12147 pts/0    S+     0:00              \_ sh -c ps af
+12148 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+success
+TEST
+success
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12150 pts/0    S+     0:00      \_ sh -c ./shell_andor cat success.txt '&&' cat error.txt
+12151 pts/0    S+     0:00          \_ ./shell_andor cat success.txt && cat error.txt
+12152 pts/0    Z+     0:00              \_ [cat] <defunct>
+12153 pts/0    S+     0:00              \_ sh -c ps af
+12154 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+cat: error.txt: Нет такого файла или каталога
+TEST
+cat: error.txt: Нет такого файла или каталога
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12156 pts/0    S+     0:00      \_ sh -c ./shell_andor cat error.txt '&&' cat success.txt
+12157 pts/0    S+     0:00          \_ ./shell_andor cat error.txt && cat success.txt
+12158 pts/0    Z+     0:00              \_ [cat] <defunct>
+12159 pts/0    S+     0:00              \_ sh -c ps af
+12160 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+TEST
+cat: error.txt: Нет такого файла или каталога
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12161 pts/0    S+     0:00      \_ sh -c ./shell_andor cat error.txt '&&' cat error.txt
+12162 pts/0    S+     0:00          \_ ./shell_andor cat error.txt && cat error.txt
+12163 pts/0    Z+     0:00              \_ [cat] <defunct>
+12164 pts/0    S+     0:00              \_ sh -c ps af
+12165 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+TEST
+success
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12166 pts/0    S+     0:00      \_ sh -c ./shell_andor cat success.txt ';' cat success.txt
+12167 pts/0    S+     0:00          \_ ./shell_andor cat success.txt ; cat success.txt
+12168 pts/0    Z+     0:00              \_ [cat] <defunct>
+12169 pts/0    S+     0:00              \_ sh -c ps af
+12170 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+success
+TEST
+success
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12175 pts/0    S+     0:00      \_ sh -c ./shell_andor cat success.txt ';' cat error.txt
+12177 pts/0    S+     0:00          \_ ./shell_andor cat success.txt ; cat error.txt
+12179 pts/0    Z+     0:00              \_ [cat] <defunct>
+12181 pts/0    S+     0:00              \_ sh -c ps af
+12182 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+cat: error.txt: Нет такого файла или каталога
+TEST
+cat: error.txt: Нет такого файла или каталога
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12184 pts/0    S+     0:00      \_ sh -c ./shell_andor cat error.txt ';' cat success.txt
+12185 pts/0    S+     0:00          \_ ./shell_andor cat error.txt ; cat success.txt
+12186 pts/0    Z+     0:00              \_ [cat] <defunct>
+12187 pts/0    S+     0:00              \_ sh -c ps af
+12188 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+success
+TEST
+cat: error.txt: Нет такого файла или каталога
+  PID TTY      STAT   TIME COMMAND
+ 1304 pts/0    Ss     0:00 bash
+12113 pts/0    S+     0:00  \_ ./test
+12191 pts/0    S+     0:00      \_ sh -c ./shell_andor cat error.txt ';' cat error.txt
+12192 pts/0    S+     0:00          \_ ./shell_andor cat error.txt ; cat error.txt
+12193 pts/0    Z+     0:00              \_ [cat] <defunct>
+12194 pts/0    S+     0:00              \_ sh -c ps af
+12195 pts/0    R+     0:00                  \_ ps af
+ 2025 tty7     Ssl+   5:40 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1361 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+ 1047 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+ 1038 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+ 1036 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+ 1028 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+ 1024 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4
+cat: error.txt: Нет такого файла или каталога
+TEST

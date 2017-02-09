@@ -1,0 +1,7 @@
+-rw-rw-r-- 1 dmitry dmitry  1325 окт.  20 10:52 util.c
+-rw-rw-r-- 1 dmitry dmitry   376 нояб. 29 13:02 ls.txt
+-rw-rw-r-- 1 dmitry dmitry   437 нояб. 29 13:04 sort.txt
+-rw-rw-r-- 1 dmitry dmitry   528 нояб. 28 23:53 shell_pipe.c
+-rw-rw-r-- 1 dmitry dmitry    68 окт.  18 22:28 util.h
+-rw-rw-r-- 1 dmitry dmitry 72996 нояб. 28 23:18 Структуры данных для реализации shell.pdf
+итого 92

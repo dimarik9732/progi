@@ -1,0 +1,3 @@
+ps af > iter1.txt | sleep 5 | ps af  &
+ps af | sleep 10
+ps af

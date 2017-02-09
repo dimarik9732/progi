@@ -1,0 +1,93 @@
+Терминалы не используются в грамматике
+
+   OBRACKET
+   CBRACKET
+   NEWLINE
+   PIPE
+   FORCEOUTADD
+   FORCEOUT
+   FORCEIN
+   AND
+   OR
+   BACKGROUND
+   NEXT
+
+
+Состояние 0 конфликты: 1 сдвига/вывода
+
+
+Грамматика
+
+    0 $accept: simpleCommand $end
+
+    1 simpleCommand: %empty
+    2              | simpleCommand WORD
+    3              | WORD
+
+
+Терминальные символы с правилами, в которых они появляются
+
+$end (0) 0
+error (256)
+OBRACKET (258)
+CBRACKET (259)
+NEWLINE (260)
+WORD (261) 2 3
+PIPE (262)
+FORCEOUTADD (263)
+FORCEOUT (264)
+FORCEIN (265)
+AND (266)
+OR (267)
+BACKGROUND (268)
+NEXT (269)
+
+
+Нетерминальные символы с правилами, в которых они появляются
+
+$accept (15)
+    налево: 0
+simpleCommand (16)
+    налево: 1 2 3, направо: 0 2
+
+
+Состояние 0
+
+    0 $accept: . simpleCommand $end
+
+    WORD  сдвиг, и переход в состояние 1
+
+    WORD      [вывод с использованием правила 1 (simpleCommand)]
+    $default  вывод с использованием правила 1 (simpleCommand)
+
+    simpleCommand  переход в состояние 2
+
+
+Состояние 1
+
+    3 simpleCommand: WORD .
+
+    $default  вывод с использованием правила 3 (simpleCommand)
+
+
+Состояние 2
+
+    0 $accept: simpleCommand . $end
+    2 simpleCommand: simpleCommand . WORD
+
+    $end  сдвиг, и переход в состояние 3
+    WORD  сдвиг, и переход в состояние 4
+
+
+Состояние 3
+
+    0 $accept: simpleCommand $end .
+
+    $default  принять
+
+
+Состояние 4
+
+    2 simpleCommand: simpleCommand WORD .
+
+    $default  вывод с использованием правила 2 (simpleCommand)

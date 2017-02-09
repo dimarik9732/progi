@@ -1,0 +1,183 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/sem.h>
+#include <sys/msg.h>
+#include <signal.h>
+#include <errno.h>
+
+#define FTOK_PATH "reader.c"
+#define FTOK_PROJ 10
+#define SIZE_BLOCK 400
+
+key_t ipc_key = 0;
+
+int shm_id = -1;
+int sem_id = -1;
+int msgq_id = -1;
+
+void *mem_ptr = (void *)-1;
+
+struct msgbuf{
+	long mtype;
+	char mtext[1];
+};
+
+void cleanup(void){
+
+	if (mem_ptr != (void*)-1) shmdt (mem_ptr);
+	if (sem_id >= 0) semctl (sem_id, 0, IPC_RMID);
+	if (shm_id >= 0) shmctl (shm_id, IPC_RMID, 0);
+	if (msgq_id >= 0) msgctl (msgq_id, IPC_RMID, 0);	
+	return;
+}
+
+void pexit(char const *str){
+	perror(str);
+	cleanup();
+	exit(errno);
+}
+
+void handler(int signum){
+	cleanup();
+	exit(0);
+}
+
+void read_and_write(const char *path){
+	
+	printf("R&W\n");
+	int first = 1, end_flag = 0;
+
+	int fd = open(path, O_RDONLY, 0);
+	if (fd < 0) {
+		perror("open2");
+		struct msgbuf err = {2,{-1}};
+	 	if ( msgsnd(msgq_id, &err, 1, 0) < 0) pexit("msgsnd");
+		return;
+	}
+	
+	else {
+		struct msgbuf err = {2,{1}};
+	 	if ( msgsnd(msgq_id, &err, 1, 0) < 0) pexit("msgsnd");
+	}
+
+	char buf[SIZE_BLOCK]; // SIZE_BLOCK гарантированно больше максимального размера имени файла + 2 * sizeof(unsigned int)
+	char read_buf[SIZE_BLOCK];
+
+	sigset_t s, os;
+	sigfillset(&s);
+
+	struct sembuf wait_opt[2] = {{0, 0, 0},{0, 1, 0}};
+	struct sembuf unlock_opt = {1, -1, 0};
+
+	unsigned int n = strlen(path);
+	unsigned int m = lseek(fd, 0, SEEK_END);
+
+	lseek(fd, 0, SEEK_SET);
+	
+	size_t size = sizeof(unsigned int);
+	size_t block = SIZE_BLOCK;
+
+	while (!end_flag){
+		
+		block = SIZE_BLOCK;
+
+		if (first){	
+
+			memcpy(buf, &n, size);
+			block -= size;
+			memcpy(buf + size, path, n);
+			block -= n;
+			memcpy(buf + size + n, &m, size);
+			block -= size;
+
+		}
+
+		if (block > 0){
+			if (block > m){
+				if (read(fd, read_buf, m) < m) pexit("read");
+				memcpy(buf + size + n + size, read_buf, m);
+				memset(buf + size + n + size + m, 0, block - m);
+				end_flag = 1;
+			}
+
+			else {
+				if (read(fd, read_buf, block) < block) 
+					pexit("read");
+				if (first){
+					memcpy(buf + size + n + size, read_buf, block);
+					first = 0;
+				}
+				else {
+					memcpy(buf, read_buf, block);
+				}
+				m -= block;
+			}
+		}
+
+//		sigprocmask(SIG_BLOCK, &s, &os); // Блокируем сигналы
+		unsigned short sem[3];
+		if (semop(sem_id, wait_opt, 2) < 0) pexit("semop1"); // Блокируем память на чтение и запись
+		memcpy(mem_ptr, buf, SIZE_BLOCK); // Передаем блок
+		semctl(sem_id, 3, GETALL, sem );
+		if (semop(sem_id, &unlock_opt, 1) < 0) pexit("semop2"); // Разблокируем память
+//		sigprocmask(SIG_SETMASK, &os, NULL); // Разблокируем сигналы
+	}
+
+	close(fd);
+	return;
+}
+	
+
+
+int main(int argc, char const *argv[]) {
+
+	signal(SIGINT, handler);
+	int i;
+	ipc_key = ftok(FTOK_PATH,FTOK_PROJ);
+	printf("KEY = %d\n", ipc_key);
+
+	unsigned short sem_init[3] = {0,1,1}, sem[3];
+
+	if ( (msgq_id=msgget(ipc_key, IPC_CREAT | IPC_EXCL |  0660)) < 0 )
+			if ( (msgq_id=msgget(ipc_key, 0)) < 0 ) pexit("msgget");
+
+	struct msgbuf message;
+
+	message.mtype = 1;
+	message.mtext[0] = (char) argc;
+
+	if ( msgsnd(msgq_id, &message, 1, 0) < 0) pexit("msgsnd");
+
+	if ( (shm_id=shmget(ipc_key, sizeof(char) * SIZE_BLOCK, IPC_CREAT | 0660)) < 0)
+			pexit("shmget");
+	
+	mem_ptr = shmat (shm_id, NULL, 0);
+	
+	if (mem_ptr == (void *) -1)
+		pexit("shmat");
+
+	struct sembuf init = {2, -1, 0};
+
+	if ((sem_id = semget (ipc_key, 3, IPC_CREAT | IPC_EXCL | 0660)) < 0 ){
+			if ((sem_id = semget (ipc_key, 0, 0)) < 0) pexit("semget");
+			if (semop(sem_id, &init, 1) < 0) pexit("semop");
+	}
+	else {
+		semctl(sem_id, 3, SETALL, sem_init);
+		semctl(sem_id, 3, GETALL, sem);
+	}
+
+
+	for (i = 0; i < argc - 1; i++){
+		read_and_write(argv[i+1]);
+	}
+
+//	cleanup();
+	return 0;
+}

@@ -1,0 +1,16 @@
+bubble 1000	real	0m0.037s	user	0m0.028s	sys	0m0.004s
+bubble 10000	real	0m2.923s	user	0m2.892s	sys	0m0.004s
+bubble 100000	real	8m57.418s	user	8m56.756s	sys	0m0.280s
+bubble 1000000	слишком много времени :((
+
+merge 1000 strings	real	0m0.015s	user	0m0.000s	sys	0m0.000s
+merge 10000 strings	real	0m0.015s	user	0m0.012s	sys	0m0.000s
+merge 100000 strings	real	0m0.185s	user	0m0.160s	sys	0m0.032s
+merge 1000000 strings	real	0m2.752s	user	0m2.172s	sys	0m0.312s
+
+tree 1000 strings	real	0m0.012s	user	0m0.004s	sys	0m0.004s
+tree 10000 strings	real	0m0.130s	user	0m0.124s	sys	0m0.004s
+tree 100000 strings	real	0m11.527s	user	0m11.340s	sys	0m0.104s
+tree 1000000 strings Слишком много времени :((
+
+Лучше всего на больших объемах данных использовать сортировку слиянием, но она проигрывает при маленьких объемах или при относительно упорядоченных данных (то есть, например почти отсортированный список будет сортировать столько же, как и совсем не отсортированный). Дерево работает в зависимости от исходных данных (их сбалансированности). 

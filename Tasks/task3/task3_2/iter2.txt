@@ -1,0 +1,17 @@
+  PID TTY      STAT   TIME COMMAND
+13039 pts/8    Ss     0:00 bash
+28533 pts/8    S+     0:00  \_ man strcpy
+28545 pts/8    S+     0:00      \_ pager -s
+26188 pts/3    Ss     0:00 bash
+29784 pts/3    S+     0:00  \_ /bin/bash ./test.sh
+29806 pts/3    R+     0:00      \_ ./shell_pipe
+29809 pts/3    R+     0:00          \_ ps af
+29810 pts/3    S+     0:00          \_ tee iter2.txt
+29813 pts/3    R+     0:00          \_ ps af
+21987 tty7     Ssl+  11:04 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+ 1436 tty1     Ss+    0:00 /sbin/getty -8 38400 tty1
+  969 tty6     Ss+    0:00 /sbin/getty -8 38400 tty6
+  966 tty3     Ss+    0:00 /sbin/getty -8 38400 tty3
+  958 tty2     Ss+    0:00 /sbin/getty -8 38400 tty2
+  949 tty5     Ss+    0:00 /sbin/getty -8 38400 tty5
+  945 tty4     Ss+    0:00 /sbin/getty -8 38400 tty4

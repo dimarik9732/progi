@@ -1,0 +1,18 @@
+итого 136
+-rw-rw-r-- 1 dmitry dmitry   854 дек.   9 02:10 cat.txt
+-rw-rw-r-- 1 dmitry dmitry     0 дек.   8 14:03 ddsfkdjs
+-rw-rw-r-- 1 dmitry dmitry     0 дек.   9 16:04 iter1.txt
+-rw-rw-r-- 1 dmitry dmitry   971 дек.   9 16:03 iter2.txt
+-rw-rw-r-- 1 dmitry dmitry  1095 дек.   9 16:03 ls.txt
+-rw-rw-r-- 1 dmitry dmitry     0 нояб. 29 13:12 ls.txt}
+-rw-rw-r-- 1 dmitry dmitry     0 нояб. 29 13:42 ps.txt
+-rw-rw-r-- 1 dmitry dmitry     0 дек.   8 14:04 sdfhkjsfdh
+-rwxrwxr-x 1 dmitry dmitry 20167 дек.   9 16:03 shell_pipe
+-rw-rw-r-- 1 dmitry dmitry  6579 дек.   9 16:00 shell_pipe.c
+-rw-rw-r-- 1 dmitry dmitry   437 нояб. 29 13:05 sort.txt
+-rw------- 1 dmitry dmitry  1378 дек.   1 13:56 tags
+-rwxrwxr-x 1 dmitry dmitry   630 дек.   9 16:03 test.sh
+-rw-rw-r-- 1 dmitry dmitry    75 дек.   9 16:04 test.txt
+-rw-rw-r-- 1 dmitry dmitry  1325 окт.  20 10:52 util.c
+-rw-rw-r-- 1 dmitry dmitry    68 окт.  18 22:28 util.h
+-rw-rw-r-- 1 dmitry dmitry 72996 нояб. 28 23:18 Структуры данных для реализации shell.pdf
