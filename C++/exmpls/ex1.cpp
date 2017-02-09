@@ -14,7 +14,7 @@ class Cat{
 		}
 
 		int print_inf(){
-			cout << name << " " << age; 
+			cout << name << " " << age << endl; 
 		}
 };
 
