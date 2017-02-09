@@ -14,14 +14,14 @@ class Cat{
 		}
 
 		int print_inf(){
-			cout << name << " " << age 
+			cout << name << " " << age; 
 		}
 };
 
 
 int main(int argc, char const *argv[])
 {
-	cat1 = Cat("Alex", 10, 20);
+	Cat cat1("Alex", 10, 20);
 	cat1.print_inf();
 	return 0;
 }
