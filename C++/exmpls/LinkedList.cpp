@@ -40,7 +40,7 @@ class LinkedList{
 			Node *previous = this->first;
 			Node *current = this->first;
 			Node *b_current = b->first->next;
-			for (int i = 0; i < b.length - 1; ++i)
+			while (b_current->next)
 			{
 				current->next = new Node;
 				current = current->next;
@@ -49,7 +49,12 @@ class LinkedList{
 				previous = previous->next;
 				b_current = b_current->next;
 			}
+			current->next = NULL;
 		}
+
+		
+
+
 };
 
 
