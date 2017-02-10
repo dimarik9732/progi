@@ -2,19 +2,42 @@
 #include <cstring>
 using namespace std;
 
-class Cat{
-	char* name;
-	int age;
-	int strong;
+struct Node
+{
+	int data;
+	Node *next;
+	Node *prev;  
+};
+
+class LinkedList{
+	Node *first, *last;
+	int length;
 
 	public:
-		Cat(const char* n, int a, int s): age(a), strong(s){
-		name = new char[strlen(n)];
-		strcpy(name, n);
+		LinkedList(){
+			first = NULL;
+			last = NULL;
+			length = 0;
 		}
-
-		int print_inf(){
-			cout << name << " " << age << endl; 
+		LinkedList(int a){
+			first = new Node;
+			first->next = NULL;
+			first->prev = NULL;
+			first->data = a;
+			last = first;
+			length = 1;
+		}
+		LinkedList(LinkedList & b){
+			if (b.first)
+			{
+				this->first = new Node;
+				this->first->data = (b.first)->data;
+				this->	
+			}
+			for (int i = 0; i < b.length; ++i)
+			{
+				
+			}
 		}
 };
 
